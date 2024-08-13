@@ -9,6 +9,7 @@ import userRouter from "./src/modules/user/user.routes.js";
 import session from "express-session";
 import mongoSession from "connect-mongodb-session";
 import cors from "cors";
+import * as path from "path";
 const app = express();
 app.use(cors());
 let mongoDBStore = mongoSession(session);
@@ -25,7 +26,9 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
-app.use("/public", express.static("public"));
+app.set("views", path.resolve() + "/views");
+app.set("view engine", "ejs");
+app.use(express.static(path.join(path.resolve(), "public")));
 const port = process.env.PORT || 3000;
 app.use(homeRouter);
 app.use(loginRouter);
