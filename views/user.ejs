@@ -5,7 +5,7 @@
     <a href="" data-toggle="modal" data-target="#profile">
       <img src="/public/img/avatar.png" class="avatar" alt="" />
     </a>
-    <h3 class="py-2"><%= session.name %></h3>
+    <h3 class="py-2"><%=name %></h3>
     <div class="container w-50 m-auto">
       <form action="/sendMsg/<%= userId %>" method="post">
         <textarea

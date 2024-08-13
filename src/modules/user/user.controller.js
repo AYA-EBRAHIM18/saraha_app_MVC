@@ -1,7 +1,13 @@
 import { Message } from "../../../database/models/message.model.js";
+import { User } from "../../../database/models/user.model.js";
 
 const user = async (req, res) => {
-  res.render("user.ejs", { userId: req.params.id, session: null });
+  let user = await User.findById(req.params.id);
+  res.render("user.ejs", {
+    userId: req.params.id,
+    name: user.name,
+    session: null,
+  });
 };
 
 const sendMsg = async (req, res) => {
