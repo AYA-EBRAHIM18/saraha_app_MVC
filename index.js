@@ -19,7 +19,7 @@ let store = new mongoDBStore({
 });
 app.use(
   session({
-    secret: "keyboard input",
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: false,
     store: store,
