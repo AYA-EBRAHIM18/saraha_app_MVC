@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 let mongoDBStore = mongoSession(session);
 let store = new mongoDBStore({
-  uri: process.env.MONGO_URI,
+  uri: "mongodb+srv://e-commerce:dZp6JWPxkQqajxjZ@cluster0.3hdqd.mongodb.net/Saraha-mvc",
   collection: "mySessions",
 });
 app.use(
@@ -22,11 +22,12 @@ app.use(
     secret: "keyboard input",
     saveUninitialized: true,
     resave: false,
-    store,
+    store: store,
   })
 );
 app.use(express.urlencoded({ extended: true }));
-app.set("views", path.resolve() + "/views");
+app.use("/public", express.static("public"));
+app.set("views", path.join(path.resolve(), "/views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(path.resolve(), "public")));
 const port = process.env.PORT || 3000;
