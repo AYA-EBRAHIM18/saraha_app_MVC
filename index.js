@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 let mongoDBStore = mongoSession(session);
 let store = new mongoDBStore({
-  uri: "mongodb+srv://e-commerce:dZp6JWPxkQqajxjZ@cluster0.3hdqd.mongodb.net/Saraha-mvc",
+  uri: process.env.MONGO_URI,
   collection: "mySessions",
 });
 app.use(
